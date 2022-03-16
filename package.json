@@ -40,6 +40,7 @@
   "name": "misfans-design-system",
   "author": "Nestor",
   "module": "dist/misfans-design-system.esm.js",
+  "repository": "https://github.com/nestoredduardo/misfans-ui-react",
   "size-limit": [
     {
       "path": "dist/misfans-design-system.cjs.production.min.js",
@@ -62,6 +63,7 @@
     "@tailwindcss/postcss7-compat": "^2.2.4",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
+    "auto": "^10.34.1",
     "autoprefixer": "^10.3.1",
     "babel-loader": "^8.2.2",
     "chromatic": "^6.5.3",
