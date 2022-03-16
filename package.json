@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -36,7 +36,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "misfans-ui",
+  "name": "misfans-design-system",
   "author": "Nestor",
   "module": "dist/misfans-design-system.esm.js",
   "size-limit": [
