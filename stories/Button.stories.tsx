@@ -1,34 +1,39 @@
-import React from 'react';
 import { Meta, Story } from '@storybook/react';
+
 import { Button, ButtonProps } from '../src';
 
-const meta: Meta = {
-  title: 'Input/Button',
+export default {
+  title: 'Buttons/Button',
   component: Button,
-  argTypes: {
-    onClick: { action: 'clicked' },
-    title: {
-      control: {
-        type: 'text',
-      },
-    },
-    disabled: {
-      control: {
-        type: 'boolean',
-      },
-    },
-  },
-  parameters: {
-    controls: { expanded: true },
-  },
-};
-
-export default meta;
+} as Meta;
 
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'Storybook Button',
-  disabled: false,
+  children: 'Button',
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  children: 'Button',
+  disabled: true,
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  children: 'Button',
+  variant: 'error',
+};
+
+export const Warning = Template.bind({});
+Warning.args = {
+  children: 'Button',
+  variant: 'warning',
+};
+
+export const Success = Template.bind({});
+Success.args = {
+  children: 'Button',
+  variant: 'success',
 };

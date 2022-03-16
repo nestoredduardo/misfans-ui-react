@@ -1,18 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import cx from 'classnames';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  title: string;
+import { NOOP } from './utils/function-utils';
+
+export interface ButtonProps {
+  className?: string;
+  children?: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  type?: 'button' | 'submit';
+  variant?: 'default' | 'error' | 'warning' | 'success';
+  rightIcon?: string | React.FC;
+  leftIcon?: string | React.FC;
+  disabled?: boolean;
 }
 
-export const Button = ({ disabled, title, ...rest }: ButtonProps) => (
-  <button
-    className={`bg-transparent text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded disabled:text-gray-400 disabled:border-gray-400 disabled:cursor-default ${
-      !disabled && 'hover:bg-blue-500'
-    }`}
-    disabled={disabled}
-    {...rest}
-  >
-    {title}
-  </button>
-);
+export const Button: React.FC<ButtonProps> = ({
+  className = '',
+  children = 'Button',
+  onClick = NOOP,
+  type = 'button',
+  variant = 'default',
+  rightIcon = '',
+  leftIcon = '',
+  disabled = false,
+}) => {
+  const [bgStyles, setBgStyles] = useState('');
+  const [disabledStyles, setDisabledStyles] = useState('');
+
+  useEffect(() => {
+    switch (variant) {
+      case 'default':
+        setBgStyles('bg-primary hover:bg-primary-900');
+        setDisabledStyles('bg-primary-200 cursor-not-allowed');
+        break;
+      case 'success':
+        setBgStyles('bg-green-600 hover:bg-green-500 focus:bg-green-700');
+        setDisabledStyles('bg-green-200 cursor-not-allowed');
+        break;
+      case 'warning':
+        setBgStyles('bg-yellow-500 hover:bg-yellow-400 focus:bg-yellow-600');
+        setDisabledStyles('bg-yellow-200 cursor-not-allowed');
+        break;
+      case 'error':
+        setBgStyles('bg-red-500 hover:bg-red-400 focus:bg-red-600');
+        setDisabledStyles('bg-green-200 cursor-not-allowed');
+        break;
+    }
+  }, [variant]);
+
+  const buttonClassName: string = cx(
+    'flex h-[56px] w-[134px] text-base items-center justify-center rounded-md font-semibold text-gray-50',
+    disabled ? disabledStyles : bgStyles,
+    className
+  );
+
+  return (
+    <button
+      disabled={disabled}
+      type={type}
+      className={buttonClassName}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+};
